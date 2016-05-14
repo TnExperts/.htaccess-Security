@@ -117,7 +117,7 @@ SetEnvIfNoCase User-Agent ".*LWP::Simple.*" bad_bot
 SetEnvIfNoCase User-Agent .*Magnet.* bad_bot
 SetEnvIfNoCase User-Agent .*Mag-Net.* bad_bot
 SetEnvIfNoCase User-Agent .*moget.* bad_bot
-SetEnvIfNoCase User-Agent ".*MIDown\ tool.* bad_bot
+SetEnvIfNoCase User-Agent ".*MIDown\ tool.*" bad_bot
 SetEnvIfNoCase User-Agent .*NetSpider.* bad_bot
 SetEnvIfNoCase User-Agent .*NetZIP.* bad_bot
 SetEnvIfNoCase User-Agent .*Reaper.* bad_bot

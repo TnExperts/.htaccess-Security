@@ -99,7 +99,7 @@ SetEnvIfNoCase User-Agent .*Sucker.* bad_bot
 SetEnvIfNoCase User-Agent .*SuperHTTP.* bad_bot
 SetEnvIfNoCase User-Agent .*Teleport.* bad_bot
 SetEnvIfNoCase User-Agent .*Vacuum.* bad_bot
-SetEnvIfNoCase User-Agent ".*Web\ Sucker.* bad_bot
+SetEnvIfNoCase User-Agent ".*Web\ Sucker.*" bad_bot
 SetEnvIfNoCase User-Agent .*WebAuto.* bad_bot
 SetEnvIfNoCase User-Agent .*WebBandit.* bad_bot
 SetEnvIfNoCase User-Agent .*Webclipping.com.* bad_bot

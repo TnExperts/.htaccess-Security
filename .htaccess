@@ -109,6 +109,13 @@ SetEnvIfNoCase User-Agent .*moget.* bad_bot
 SetEnvIfNoCase User-Agent ".*MIDown\ tool.* bad_bot
 SetEnvIfNoCase User-Agent .*NetSpider.* bad_bot
 SetEnvIfNoCase User-Agent .*NetZIP.* bad_bot
+SetEnvIfNoCase User-Agent .*Reaper.* bad_bot
+SetEnvIfNoCase User-Agent .*Recorder.* bad_bot
+SetEnvIfNoCase User-Agent .*ReGet.* bad_bot
+SetEnvIfNoCase User-Agent .*RepoMonkey.* bad_bot
+SetEnvIfNoCase User-Agent .*RMA.* bad_bot
+SetEnvIfNoCase User-Agent .*Siphon.* bad_bot
+SetEnvIfNoCase User-Agent .*SiteSnagger.* bad_bot
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
@@ -136,6 +143,7 @@ SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailWolf.* bad_bot
 SetEnvIfNoCase User-Agent .*WebEMailExtrac.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
+SetEnvIfNoCase User-Agent .*Mail.* bad_bot
 
 # blocking other crawlers, spiders and bots that are causing recursive queries
 SetEnvIfNoCase User-Agent .*slurp.* bad_bot           # Yahoo Slurp
@@ -245,6 +253,49 @@ SetEnvIfNoCase User-Agent .*ProWebWalker.* bad_bot
 SetEnvIfNoCase User-Agent .*psbot.* bad_bot
 SetEnvIfNoCase User-Agent .*Pump.* bad_bot
 SetEnvIfNoCase User-Agent .*QueryN.Metasearch.* bad_bot
+SetEnvIfNoCase User-Agent .*SlySearch.* bad_bot
+SetEnvIfNoCase User-Agent .*Snake.* bad_bot
+SetEnvIfNoCase User-Agent .*Snapbot.* bad_bot
+SetEnvIfNoCase User-Agent .*Snoopy.* bad_bot
+SetEnvIfNoCase User-Agent .*sogou.* bad_bot
+SetEnvIfNoCase User-Agent .*SpaceBison.* bad_bot
+SetEnvIfNoCase User-Agent .*SpankBot.* bad_bot
+SetEnvIfNoCase User-Agent .*spanner.* bad_bot
+SetEnvIfNoCase User-Agent .*Sqworm.* bad_bot
+SetEnvIfNoCase User-Agent .*Stripper.* bad_bot
+SetEnvIfNoCase User-Agent .*SuperBot.* bad_bot
+SetEnvIfNoCase User-Agent .*Surfbot.* bad_bot
+SetEnvIfNoCase User-Agent .*suzuran.* bad_bot
+SetEnvIfNoCase User-Agent ".*Szukacz\/1.4.*" bad_bot
+SetEnvIfNoCase User-Agent .*tAkeOut.* bad_bot
+SetEnvIfNoCase User-Agent .*Telesoft.* bad_bot
+SetEnvIfNoCase User-Agent ".*TurnitinBot\/1.5.*" bad_bot
+SetEnvIfNoCase User-Agent .*The.Intraformant.* bad_bot
+SetEnvIfNoCase User-Agent .*TheNomad.* bad_bot
+SetEnvIfNoCase User-Agent .*TightTwatBot.* bad_bot
+SetEnvIfNoCase User-Agent .*Titan.* bad_bot
+SetEnvIfNoCase User-Agent .*True_Robot.* bad_bot
+SetEnvIfNoCase User-Agent .*turingos.* bad_bot
+SetEnvIfNoCase User-Agent .*TurnitinBot.* bad_bot
+SetEnvIfNoCase User-Agent .*URLy.Warning.* bad_bot
+SetEnvIfNoCase User-Agent .*VCI.* bad_bot
+SetEnvIfNoCase User-Agent .*VoidEYE.* bad_bot
+SetEnvIfNoCase User-Agent .*WebmasterWorldForumBot.* bad_bot
+SetEnvIfNoCase User-Agent ".*WebGo\ IS.*" bad_bot
+SetEnvIfNoCase User-Agent .*Widow.* bad_bot
+SetEnvIfNoCase User-Agent .*WISENutbot.* bad_bot
+SetEnvIfNoCase User-Agent .*Xaldon.* bad_bot
+SetEnvIfNoCase User-Agent .*Zeus.* bad_bot
+SetEnvIfNoCase User-Agent .*ZmEu.* bad_bot
+SetEnvIfNoCase User-Agent .*Zyborg.* bad_bot
+SetEnvIfNoCase User-Agent .*crawle.* bad_bot
+SetEnvIfNoCase User-Agent .*igdeSpyder.* bad_bot
+SetEnvIfNoCase User-Agent .*Robot.* bad_bot
+SetEnvIfNoCase User-Agent .*Aport.* bad_bot
+SetEnvIfNoCase User-Agent .*spider.* bad_bot
+SetEnvIfNoCase User-Agent .*Parser.* bad_bot
+SetEnvIfNoCase User-Agent .*ahref.* bad_bot
+SetEnvIfNoCase User-Agent .*zoom.* bad_bot
 
 # blocking direct queries via PHP or automated scripts using PHP
 SetEnvIfNoCase User-Agent .*PHP\/5.* bad_bot
@@ -261,6 +312,8 @@ SetEnvIfNoCase User-Agent .*Exabot.* bad_bot
 SetEnvIfNoCase User-Agent ".*Image\ Stripper.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Image\ Sucker.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Express\ WebPictures.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Web\ Image\ Collector.*" bad_bot
+SetEnvIfNoCase User-Agent .*Web.Image.Collector.* bad_bot
 
 # blocking malicious browsers
 SetEnvIfNoCase User-Agent ".*Firefox\ mutant.*" bad_bot
@@ -284,3 +337,50 @@ Order Allow,Deny
 Allow from all
 Deny from env=bad_bot
 </Limit>
+
+# denying some subnets that are known to propagate attacks:
+
+# Cyveillance subnets
+deny from 38.100.19.8/29
+deny from 38.100.21.0/24
+deny from 38.100.41.64/26
+deny from 38.105.71.0/25
+deny from 38.105.83.0/27
+deny from 38.112.21.140/30
+deny from 38.118.42.32/29
+deny from 65.213.208.128/27
+deny from 65.222.176.96/27
+deny from 65.222.185.72/29
+
+# Poneytelecom subnets
+deny from 62.4.0.0/19
+deny from 62.210.0.0/16
+deny from 195.154.0.0/16
+deny from 212.47.224.0/19
+deny from 212.83.128.0/19
+deny from 212.83.160.0/19
+deny from 212.129.0.0/18
+
+# Ecatel & Leaseweb subnets
+deny from 80.82.64.0/24
+deny from 80.82.65.0/24
+deny from 80.82.66.0/24
+deny from 80.82.67.0/24
+deny from 80.82.68.0/24
+deny from 80.82.69.0/24
+deny from 80.82.70.0/24
+deny from 80.82.76.0/24
+deny from 80.82.77.0/24
+deny from 80.82.78.0/24
+deny from 80.82.79.0/24
+deny from 89.248.160.0/21
+deny from 89.248.168.0/24
+deny from 89.248.169.0/24
+deny from 89.248.170.0/23
+deny from 89.248.172.0/23
+deny from 89.248.174.0/24
+deny from 93.174.88.0/21
+deny from 94.102.48.0/20
+deny from 188.72.106.0/24
+deny from 188.72.117.0/24
+deny from 185.56.80.125

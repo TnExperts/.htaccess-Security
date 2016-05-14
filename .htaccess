@@ -43,6 +43,10 @@ SetEnvIfNoCase User-Agent .*Copier.* bad_bot
 SetEnvIfNoCase User-Agent .*Extractor.* bad_bot
 SetEnvIfNoCase User-Agent .*lftp.* bad_bot
 SetEnvIfNoCase User-Agent ".*libWeb\/clsHTTP.*" bad_bot
+SetEnvIfNoCase User-Agent .*Mirror.* bad_bot
+SetEnvIfNoCase User-Agent ".*Net\ Vampire.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Offline\ Explorer.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Offline\ Navigator.*" bad_bot
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
@@ -99,6 +103,8 @@ SetEnvIfNoCase User-Agent ".*Express\ WebPictures.*" bad_bot
 # blocking malicious browsers
 SetEnvIfNoCase User-Agent ".*Firefox\ mutant.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Ukraine\ Local.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Mozilla\/3.Mozilla\/2.01.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Mozilla.*NEWT.*" bad_bot
 
 # link extractors
 SetEnvIfNoCase User-Agent .*LinkextractorPro.* bad_bot

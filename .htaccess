@@ -4,6 +4,18 @@ ErrorDocument 403 bad-bots.html
 # Disable directory indexing:
 Options -Indexes 
 
+# Twarting XSS attacks
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ index_error.php [F,L]
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]
+
 # Block bad bots & scrapers using their user-agents
 #
 # blocking content harvesters and site copiers 
@@ -16,14 +28,21 @@ SetEnvIfNoCase User-Agent .*python.* bad_bot
 SetEnvIfNoCase User-Agent .*java.* bad_bot
 SetEnvIfNoCase User-Agent .*WebReaper.* bad_bot
 SetEnvIfNoCase User-Agent .*WebSauger.* bad_bot
-SetEnvIfNoCase User-Agent .*Website\ eXtractor.* bad_bot
-SetEnvIfNoCase User-Agent .*Website\ Quester.* bad_bot
+SetEnvIfNoCase User-Agent ".*Website\ eXtractor.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Website\ Quester.*" bad_bot
 SetEnvIfNoCase User-Agent .*Webster.* bad_bot
 SetEnvIfNoCase User-Agent .*WebStripper.* bad_bot
 SetEnvIfNoCase User-Agent .*WebWhacker.* bad_bot
 SetEnvIfNoCase User-Agent .*WebZIP.* bad_bot
 SetEnvIfNoCase User-Agent .*Whacker.* bad_bot
 SetEnvIfNoCase User-Agent .*BatchFTP.* bad_bot
+SetEnvIfNoCase User-Agent .*HTTrack.* bad_bot
+SetEnvIfNoCase User-Agent .*Harvest.* bad_bot
+SetEnvIfNoCase User-Agent .*Collector.* bad_bot
+SetEnvIfNoCase User-Agent .*Copier.* bad_bot
+SetEnvIfNoCase User-Agent .*Extractor.* bad_bot
+SetEnvIfNoCase User-Agent .*lftp.* bad_bot
+SetEnvIfNoCase User-Agent ".*libWeb\/clsHTTP.*" bad_bot
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
@@ -40,6 +59,8 @@ SetEnvIfNoCase User-Agent ".*Download\ Demon.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Download\ Devil.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Download\ Wonder.*" bad_bot
 SetEnvIfNoCase User-Agent ".*EirGrabber.*" bad_bot
+SetEnvIfNoCase User-Agent .*EasyDL.* bad_bot
+SetEnvIfNoCase User-Agent ".*Mass\ Downloader.*" bad_bot
 
 # blocking email harvesters
 SetEnvIfNoCase User-Agent .*EmailCollector.* bad_bot
@@ -70,10 +91,20 @@ SetEnvIfNoCase User-Agent .*Googlebot-Image.* bad_bot        # yes we block Goog
 SetEnvIfNoCase User-Agent .*Googlebot-Video.* bad_bot
 SetEnvIfNoCase User-Agent .*bingpreview.* bad_bot
 SetEnvIfNoCase User-Agent .*msnbot-media.* bad_bot
+SetEnvIfNoCase User-Agent .*Exabot.* bad_bot
+SetEnvIfNoCase User-Agent ".*Image\ Stripper.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Image\ Sucker.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Express\ WebPictures.*" bad_bot
 
 # blocking malicious browsers
 SetEnvIfNoCase User-Agent ".*Firefox\ mutant.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Ukraine\ Local.*" bad_bot
+
+# link extractors
+SetEnvIfNoCase User-Agent .*LinkextractorPro.* bad_bot
+SetEnvIfNoCase User-Agent ".*LinkScan\/8.1a.Unix.*" bad_bot
+SetEnvIfNoCase User-Agent .*LNSpiderguy.* bad_bot
+SetEnvIfNoCase User-Agent .*LinkWalker.* bad_bot
 
 # if we do not use the RSS feed or don't want it harvested we can add this too:
 SetEnvIfNoCase User-Agent .*feed.* bad_bot

@@ -11,3 +11,5 @@ http://www.thesitewizard.com/apache/prevent-directory-listing-htaccess.shtml
 http://www.useragentstring.com/pages/useragentstring.php
 
 https://perishablepress.com/how-to-block-proxy-servers-via-htaccess/
+
+http://pastebin.com/5Hw9KZnW

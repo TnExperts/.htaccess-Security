@@ -24,5 +24,17 @@ SetEnvIfNoCase User-Agent .*Yandex.* bad_bot
 
 # blocking aggressive downloader scripts
 SetEnvIfNoCase User-Agent .*Download\ Demon.* bad_bot
-SetEnvIfNoCase User-Agent .*Download\\ Devil.* bad_bot
+SetEnvIfNoCase User-Agent .*Download\ Devil.* bad_bot
 SetEnvIfNoCase User-Agent .*Download\ Wonder.* bad_bot
+SetEnvIfNoCase User-Agent .*EirGrabber.* bad_bot
+
+# blocking email harvesters
+SetEnvIfNoCase User-Agent .*EmailCollector.* bad_bot
+SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
+SetEnvIfNoCase User-Agent .*EmailWolf.* bad_bot
+
+<Limit GET POST HEAD>
+Order Allow,Deny
+Allow from all
+Deny from env=bad_bot
+</Limit>

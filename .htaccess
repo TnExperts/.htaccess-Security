@@ -1,4 +1,7 @@
-# Block Bad Bots & Scrapers
+# Defining custom error document so that all restrictions are routed to a HTML page which minimizes the resource impact:
+ErrorDocument 403 bad-bots.html
+
+# Block bad bots & scrapers using their user-agents
 #
 # blocking content harvesters and site copiers using wget
 SetEnvIfNoCase User-Agent .*wget.* bad_bot
@@ -19,4 +22,7 @@ SetEnvIfNoCase User-Agent .*Baidu.* bad_bot
 # blocking aggressive russian search engine
 SetEnvIfNoCase User-Agent .*Yandex.* bad_bot
 
-
+# blocking aggressive downloader scripts
+SetEnvIfNoCase User-Agent .*Download\ Demon.* bad_bot
+SetEnvIfNoCase User-Agent .*Download\\ Devil.* bad_bot
+SetEnvIfNoCase User-Agent .*Download\ Wonder.* bad_bot

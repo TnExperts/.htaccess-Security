@@ -1,6 +1,9 @@
 # Defining custom error document so that all restrictions are routed to a HTML page which minimizes the resource impact:
 ErrorDocument 403 bad-bots.html
 
+# Disable directory indexing:
+Options -Indexes 
+
 # Block bad bots & scrapers using their user-agents
 #
 # blocking content harvesters and site copiers 
@@ -11,6 +14,16 @@ SetEnvIfNoCase User-Agent .*WinHttp.* bad_bot
 SetEnvIfNoCase User-Agent .*okhttp.* bad_bot
 SetEnvIfNoCase User-Agent .*python.* bad_bot
 SetEnvIfNoCase User-Agent .*java.* bad_bot
+SetEnvIfNoCase User-Agent .*WebReaper.* bad_bot
+SetEnvIfNoCase User-Agent .*WebSauger.* bad_bot
+SetEnvIfNoCase User-Agent .*Website\ eXtractor.* bad_bot
+SetEnvIfNoCase User-Agent .*Website\ Quester.* bad_bot
+SetEnvIfNoCase User-Agent .*Webster.* bad_bot
+SetEnvIfNoCase User-Agent .*WebStripper.* bad_bot
+SetEnvIfNoCase User-Agent .*WebWhacker.* bad_bot
+SetEnvIfNoCase User-Agent .*WebZIP.* bad_bot
+SetEnvIfNoCase User-Agent .*Whacker.* bad_bot
+SetEnvIfNoCase User-Agent .*BatchFTP.* bad_bot
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
@@ -32,6 +45,7 @@ SetEnvIfNoCase User-Agent ".*EirGrabber.*" bad_bot
 SetEnvIfNoCase User-Agent .*EmailCollector.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailWolf.* bad_bot
+SetEnvIfNoCase User-Agent .*WebEMailExtrac.* bad_bot
 
 # blocking other crawlers that are causing recursive queries
 SetEnvIfNoCase User-Agent .*slurp.* bad_bot           # Yahoo Slurp
@@ -59,7 +73,11 @@ SetEnvIfNoCase User-Agent .*msnbot-media.* bad_bot
 
 # blocking malicious browsers
 SetEnvIfNoCase User-Agent ".*Firefox\ mutant.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Ukraine\ Local.*" bad_bot
 
+# if we do not use the RSS feed or don't want it harvested we can add this too:
+SetEnvIfNoCase User-Agent .*feed.* bad_bot
+SetEnvIfNoCase User-Agent .*rss.* bad_bot
 
 <Limit GET POST HEAD>
 Order Allow,Deny

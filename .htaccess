@@ -71,6 +71,7 @@ SetEnvIfNoCase User-Agent .*EmailCollector.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailWolf.* bad_bot
 SetEnvIfNoCase User-Agent .*WebEMailExtrac.* bad_bot
+SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
 
 # blocking other crawlers that are causing recursive queries
 SetEnvIfNoCase User-Agent .*slurp.* bad_bot           # Yahoo Slurp

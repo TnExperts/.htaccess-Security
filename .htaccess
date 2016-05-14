@@ -16,6 +16,15 @@ RewriteRule ^(.*)$ index_error.php [F,L]
 RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
 RewriteRule .* - [F]
 
+# block any Googlebot user-agent that does not come from Googlebot subnet:
+RewriteCond %{HTTP_USER_AGENT} .*Googlebot.*
+RewriteCond %{REMOTE_ADDR} !66\.249\.
+RewriteRule .* - [F] 
+
+# block all queries from empty user-agents:
+RewriteCond %{HTTP_USER_AGENT} ^$
+RewriteRule ^(.*)$ - [F,L]
+
 # Block bad bots & scrapers using their user-agents
 #
 # blocking content harvesters and site copiers 
@@ -47,6 +56,21 @@ SetEnvIfNoCase User-Agent .*Mirror.* bad_bot
 SetEnvIfNoCase User-Agent ".*Net\ Vampire.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Offline\ Explorer.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Offline\ Navigator.*" bad_bot
+SetEnvIfNoCase User-Agent .*PageGrabber.* bad_bot
+SetEnvIfNoCase User-Agent .*Sucker.* bad_bot
+SetEnvIfNoCase User-Agent .*SuperHTTP.* bad_bot
+SetEnvIfNoCase User-Agent .*Teleport.* bad_bot
+SetEnvIfNoCase User-Agent .*Vacuum.* bad_bot
+SetEnvIfNoCase User-Agent ".*Web\ Sucker.* bad_bot
+SetEnvIfNoCase User-Agent .*WebAuto.* bad_bot
+SetEnvIfNoCase User-Agent .*WebBandit.* bad_bot
+SetEnvIfNoCase User-Agent .*Webclipping.com.* bad_bot
+SetEnvIfNoCase User-Agent .*WebCopier.* bad_bot
+SetEnvIfNoCase User-Agent .*WebEnhancer.* bad_bot
+SetEnvIfNoCase User-Agent .*WebFetch.* bad_bot
+SetEnvIfNoCase User-Agent .*WebLeacher.* bad_bot
+SetEnvIfNoCase User-Agent .*WWWOFFLE.* bad_bot
+SetEnvIfNoCase User-Agent .*WWW-Collector-E.* bad_bot
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
@@ -65,6 +89,8 @@ SetEnvIfNoCase User-Agent ".*Download\ Wonder.*" bad_bot
 SetEnvIfNoCase User-Agent ".*EirGrabber.*" bad_bot
 SetEnvIfNoCase User-Agent .*EasyDL.* bad_bot
 SetEnvIfNoCase User-Agent ".*Mass\ Downloader.*" bad_bot
+SetEnvIfNoCase User-Agent .*RealDownload.* bad_bot
+SetEnvIfNoCase User-Agent .*SmartDownload.* bad_bot
 
 # blocking email harvesters
 SetEnvIfNoCase User-Agent .*EmailCollector.* bad_bot
@@ -112,6 +138,7 @@ SetEnvIfNoCase User-Agent .*LinkextractorPro.* bad_bot
 SetEnvIfNoCase User-Agent ".*LinkScan\/8.1a.Unix.*" bad_bot
 SetEnvIfNoCase User-Agent .*LNSpiderguy.* bad_bot
 SetEnvIfNoCase User-Agent .*LinkWalker.* bad_bot
+SetEnvIfNoCase User-Agent .*Xenu.* bad_bot
 
 # if we do not use the RSS feed or don't want it harvested we can add this too:
 SetEnvIfNoCase User-Agent .*feed.* bad_bot

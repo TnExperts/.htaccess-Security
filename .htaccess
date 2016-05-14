@@ -1,0 +1,22 @@
+# Block Bad Bots & Scrapers
+#
+# blocking content harvesters and site copiers using wget
+SetEnvIfNoCase User-Agent .*wget.* bad_bot
+
+# blocking content harvesters and site copiers using curl
+SetEnvIfNoCase User-Agent .*curl.* bad_bot
+
+# blocking content harvesters and site copiers using perl
+SetEnvIfNoCase User-Agent .*libwww-perl.* bad_bot
+
+# blocking vulnerability scanners
+SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
+SetEnvIfNoCase User-Agent .*FHscan.* bad_bot
+
+# blocking aggressive chinese search engine
+SetEnvIfNoCase User-Agent .*Baidu.* bad_bot
+ 
+# blocking aggressive russian search engine
+SetEnvIfNoCase User-Agent .*Yandex.* bad_bot
+
+

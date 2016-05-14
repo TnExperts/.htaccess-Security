@@ -3,14 +3,14 @@ ErrorDocument 403 bad-bots.html
 
 # Block bad bots & scrapers using their user-agents
 #
-# blocking content harvesters and site copiers using wget
+# blocking content harvesters and site copiers 
 SetEnvIfNoCase User-Agent .*wget.* bad_bot
-
-# blocking content harvesters and site copiers using curl
 SetEnvIfNoCase User-Agent .*curl.* bad_bot
-
-# blocking content harvesters and site copiers using perl
 SetEnvIfNoCase User-Agent .*libwww-perl.* bad_bot
+SetEnvIfNoCase User-Agent .*WinHttp.* bad_bot
+SetEnvIfNoCase User-Agent .*okhttp.* bad_bot
+SetEnvIfNoCase User-Agent .*python.* bad_bot
+SetEnvIfNoCase User-Agent .*java.* bad_bot
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
@@ -23,15 +23,43 @@ SetEnvIfNoCase User-Agent .*Baidu.* bad_bot
 SetEnvIfNoCase User-Agent .*Yandex.* bad_bot
 
 # blocking aggressive downloader scripts
-SetEnvIfNoCase User-Agent .*Download\ Demon.* bad_bot
-SetEnvIfNoCase User-Agent .*Download\ Devil.* bad_bot
-SetEnvIfNoCase User-Agent .*Download\ Wonder.* bad_bot
-SetEnvIfNoCase User-Agent .*EirGrabber.* bad_bot
+SetEnvIfNoCase User-Agent ".*Download\ Demon.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Download\ Devil.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Download\ Wonder.*" bad_bot
+SetEnvIfNoCase User-Agent ".*EirGrabber.*" bad_bot
 
 # blocking email harvesters
 SetEnvIfNoCase User-Agent .*EmailCollector.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailWolf.* bad_bot
+
+# blocking other crawlers that are causing recursive queries
+SetEnvIfNoCase User-Agent .*slurp.* bad_bot           # Yahoo Slurp
+SetEnvIfNoCase User-Agent .*MJ12.* bad_bot            # Majestic SEO
+SetEnvIfNoCase User-Agent .*FastProbe.* bad_bot       # FastProbe
+SetEnvIfNoCase User-Agent .*spbot.* bad_bot           # spBot custom crawler used for internal search engine
+SetEnvIfNoCase User-Agent .*dotbot.* bad_bot          # DotBot
+SetEnvIfNoCase User-Agent .*semrush.* bad_bot         # SemRush
+SetEnvIfNoCase User-Agent .*Daum.* bad_bot            # Daum
+SetEnvIfNoCase User-Agent .*AOLBuild.* bad_bot        # AOL
+SetEnvIfNoCase User-Agent .*duckduckgo.* bad_bot      # DuckDuckGo
+SetEnvIfNoCase User-Agent .*teoma.* bad_bot           # Ask Jeeves
+
+# blocking direct queries via PHP or automated scripts using PHP
+SetEnvIfNoCase User-Agent .*PHP\/5.* bad_bot
+SetEnvIfNoCase User-Agent .*PHP\/4.* bad_bot
+SetEnvIfNoCase User-Agent .*PHP\/3.* bad_bot
+
+# blocking image harvesters and thumbnail generators 
+SetEnvIfNoCase User-Agent .*Thumbtack-Thunderdome.* bad_bot
+SetEnvIfNoCase User-Agent .*Googlebot-Image.* bad_bot        # yes we block Google Images too due to impact over resources
+SetEnvIfNoCase User-Agent .*Googlebot-Video.* bad_bot
+SetEnvIfNoCase User-Agent .*bingpreview.* bad_bot
+SetEnvIfNoCase User-Agent .*msnbot-media.* bad_bot
+
+# blocking malicious browsers
+SetEnvIfNoCase User-Agent ".*Firefox\ mutant.*" bad_bot
+
 
 <Limit GET POST HEAD>
 Order Allow,Deny

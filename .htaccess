@@ -238,7 +238,7 @@ SetEnvIfNoCase User-Agent ".*Microsoft\ URL\ Control.*" bad_bot
 SetEnvIfNoCase User-Agent .*MIIxpc.* bad_bot
 SetEnvIfNoCase User-Agent ".*Missigua\ Locator.*" bad_bot
 SetEnvIfNoCase User-Agent ".*Mister\ PiX.*" bad_bot
-SetEnvIfNoCase User-Agent .*NAMEPROTECT" bad_bot
+SetEnvIfNoCase User-Agent .*NAMEPROTECT.* bad_bot
 SetEnvIfNoCase User-Agent .*Navroad.* bad_bot
 SetEnvIfNoCase User-Agent .*NearSite.* bad_bot
 SetEnvIfNoCase User-Agent .*NetAnts.* bad_bot

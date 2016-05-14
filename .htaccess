@@ -25,6 +25,23 @@ RewriteRule .* - [F]
 RewriteCond %{HTTP_USER_AGENT} ^$
 RewriteRule ^(.*)$ - [F,L]
 
+# block POST without valid referer (mitigates spambots)
+RewriteCond %{REQUEST_METHOD} POST
+RewriteCond %{HTTP_REFERER} !(.*)example\.com(.*) [OR]
+RewriteCond %{HTTP_USER_AGENT} ^-?$
+RewriteRule ^(.*)$ - [F,L]
+
+# block all queries made via proxies:
+RewriteCond %{HTTP:VIA}                 !^$ [OR]
+RewriteCond %{HTTP:FORWARDED}           !^$ [OR]
+RewriteCond %{HTTP:USERAGENT_VIA}       !^$ [OR]
+RewriteCond %{HTTP:X_FORWARDED_FOR}     !^$ [OR]
+RewriteCond %{HTTP:PROXY_CONNECTION}    !^$ [OR]
+RewriteCond %{HTTP:XPROXY_CONNECTION}   !^$ [OR]
+RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
+RewriteCond %{HTTP:HTTP_CLIENT_IP}      !^$
+RewriteRule ^(.*)$ - [F]
+
 # Block bad bots & scrapers using their user-agents
 #
 # blocking content harvesters and site copiers 
@@ -71,6 +88,17 @@ SetEnvIfNoCase User-Agent .*WebFetch.* bad_bot
 SetEnvIfNoCase User-Agent .*WebLeacher.* bad_bot
 SetEnvIfNoCase User-Agent .*WWWOFFLE.* bad_bot
 SetEnvIfNoCase User-Agent .*WWW-Collector-E.* bad_bot
+SetEnvIfNoCase User-Agent .*Go-Ahead-Got-It.* bad_bot
+SetEnvIfNoCase User-Agent .*gotit.* bad_bot
+SetEnvIfNoCase User-Agent .*GrabNet.* bad_bot
+SetEnvIfNoCase User-Agent .*lwp-trivial.* bad_bot
+SetEnvIfNoCase User-Agent ".*LWP::Simple.*" bad_bot
+SetEnvIfNoCase User-Agent .*Magnet.* bad_bot
+SetEnvIfNoCase User-Agent .*Mag-Net.* bad_bot
+SetEnvIfNoCase User-Agent .*moget.* bad_bot
+SetEnvIfNoCase User-Agent ".*MIDown\ tool.* bad_bot
+SetEnvIfNoCase User-Agent .*NetSpider.* bad_bot
+SetEnvIfNoCase User-Agent .*NetZIP.* bad_bot
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot
@@ -99,7 +127,7 @@ SetEnvIfNoCase User-Agent .*EmailWolf.* bad_bot
 SetEnvIfNoCase User-Agent .*WebEMailExtrac.* bad_bot
 SetEnvIfNoCase User-Agent .*EmailSiphon.* bad_bot
 
-# blocking other crawlers that are causing recursive queries
+# blocking other crawlers, spiders and bots that are causing recursive queries
 SetEnvIfNoCase User-Agent .*slurp.* bad_bot           # Yahoo Slurp
 SetEnvIfNoCase User-Agent .*MJ12.* bad_bot            # Majestic SEO
 SetEnvIfNoCase User-Agent .*FastProbe.* bad_bot       # FastProbe
@@ -110,6 +138,103 @@ SetEnvIfNoCase User-Agent .*Daum.* bad_bot            # Daum
 SetEnvIfNoCase User-Agent .*AOLBuild.* bad_bot        # AOL
 SetEnvIfNoCase User-Agent .*duckduckgo.* bad_bot      # DuckDuckGo
 SetEnvIfNoCase User-Agent .*teoma.* bad_bot           # Ask Jeeves
+SetEnvIfNoCase User-Agent .*Aboundex.* bad_bot
+SetEnvIfNoCase User-Agent .*80legs.* bad_bot
+SetEnvIfNoCase User-Agent .*360Spider.* bad_bot
+SetEnvIfNoCase User-Agent .*Cogentbot.* bad_bot
+SetEnvIfNoCase User-Agent .*Alexibot.* bad_bot
+SetEnvIfNoCase User-Agent .*asterias.* bad_bot
+SetEnvIfNoCase User-Agent .*attach.* bad_bot
+SetEnvIfNoCase User-Agent .*BackDoorBot.* bad_bot
+SetEnvIfNoCase User-Agent .*BackWeb.* bad_bot
+SetEnvIfNoCase User-Agent .*Bandit.* bad_bot
+SetEnvIfNoCase User-Agent .*Bigfoot.* bad_bot
+SetEnvIfNoCase User-Agent .*Black.Hole.* bad_bot
+SetEnvIfNoCase User-Agent .*BlackWidow.* bad_bot
+SetEnvIfNoCase User-Agent .*BlowFish.* bad_bot
+SetEnvIfNoCase User-Agent .*BotALot.* bad_bot
+SetEnvIfNoCase User-Agent .*Buddy.* bad_bot
+SetEnvIfNoCase User-Agent .*BuiltBotTough.* bad_bot
+SetEnvIfNoCase User-Agent .*Bullseye.* bad_bot
+SetEnvIfNoCase User-Agent .*BunnySlippers.* bad_bot
+SetEnvIfNoCase User-Agent .*Cegbfeieh.* bad_bot
+SetEnvIfNoCase User-Agent .*CheeseBot.* bad_bot
+SetEnvIfNoCase User-Agent .*CherryPicker.* bad_bot
+SetEnvIfNoCase User-Agent .*ChinaClaw.* bad_bot
+SetEnvIfNoCase User-Agent .*CopyRightCheck.* bad_bot
+SetEnvIfNoCase User-Agent .*cosmos.* bad_bot
+SetEnvIfNoCase User-Agent .*Crescent.* bad_bot
+SetEnvIfNoCase User-Agent .*Custo.* bad_bot
+SetEnvIfNoCase User-Agent .*AIBOT.* bad_bot
+SetEnvIfNoCase User-Agent .*DISCo.* bad_bot
+SetEnvIfNoCase User-Agent .*DIIbot.* bad_bot
+SetEnvIfNoCase User-Agent .*DittoSpyder.* bad_bot
+SetEnvIfNoCase User-Agent .*dragonfly.* bad_bot
+SetEnvIfNoCase User-Agent .*Drip.* bad_bot
+SetEnvIfNoCase User-Agent .*eCatch.* bad_bot
+SetEnvIfNoCase User-Agent .*ebingbong.* bad_bot
+SetEnvIfNoCase User-Agent .*EroCrawler.* bad_bot
+SetEnvIfNoCase User-Agent .*EyeNetIE.* bad_bot
+SetEnvIfNoCase User-Agent .*Foobot.* bad_bot
+SetEnvIfNoCase User-Agent .*flunky.* bad_bot
+SetEnvIfNoCase User-Agent .*FrontPage.* bad_bot
+SetEnvIfNoCase User-Agent .*Grafula.* bad_bot
+SetEnvIfNoCase User-Agent .*hloader.* bad_bot
+SetEnvIfNoCase User-Agent .*HMView.* bad_bot
+SetEnvIfNoCase User-Agent .*humanlinks.* bad_bot
+SetEnvIfNoCase User-Agent .*IlseBot.* bad_bot
+SetEnvIfNoCase User-Agent ".*Indy\ Library.*" bad_bot
+SetEnvIfNoCase User-Agent .*InfoNaviRobot.* bad_bot
+SetEnvIfNoCase User-Agent .*InfoTekies.* bad_bot
+SetEnvIfNoCase User-Agent .*Intelliseek.* bad_bot
+SetEnvIfNoCase User-Agent .*InterGET.* bad_bot
+SetEnvIfNoCase User-Agent ".*Internet\ Ninja.*" bad_bot
+SetEnvIfNoCase User-Agent .*Iria.* bad_bot
+SetEnvIfNoCase User-Agent .*Jakarta.* bad_bot
+SetEnvIfNoCase User-Agent .*JennyBot.* bad_bot
+SetEnvIfNoCase User-Agent .*JetCar.* bad_bot
+SetEnvIfNoCase User-Agent .*JOC.* bad_bot
+SetEnvIfNoCase User-Agent .*JustView.* bad_bot
+SetEnvIfNoCase User-Agent .*Jyxobot.* bad_bot
+SetEnvIfNoCase User-Agent .*Kenjin.Spider.* bad_bot
+SetEnvIfNoCase User-Agent .*Keyword.Density.* bad_bot
+SetEnvIfNoCase User-Agent .*larbin.* bad_bot
+SetEnvIfNoCase User-Agent .*LexiBot.* bad_bot
+SetEnvIfNoCase User-Agent .*likse" bad_bot
+SetEnvIfNoCase User-Agent .*MarkWatch" bad_bot
+SetEnvIfNoCase User-Agent .*Mata.Hari" bad_bot
+SetEnvIfNoCase User-Agent .*Memo" bad_bot
+SetEnvIfNoCase User-Agent .*Microsoft.URL.* bad_bot
+SetEnvIfNoCase User-Agent ".*Microsoft\ URL\ Control.*" bad_bot
+SetEnvIfNoCase User-Agent .*MIIxpc.* bad_bot
+SetEnvIfNoCase User-Agent ".*Missigua\ Locator.*" bad_bot
+SetEnvIfNoCase User-Agent ".*Mister\ PiX.*" bad_bot
+SetEnvIfNoCase User-Agent .*NAMEPROTECT" bad_bot
+SetEnvIfNoCase User-Agent .*Navroad.* bad_bot
+SetEnvIfNoCase User-Agent .*NearSite.* bad_bot
+SetEnvIfNoCase User-Agent .*NetAnts.* bad_bot
+SetEnvIfNoCase User-Agent .*Netcraft.* bad_bot
+SetEnvIfNoCase User-Agent .*NetMechanic.* bad_bot
+SetEnvIfNoCase User-Agent .*NextGenSearchBot.* bad_bot
+SetEnvIfNoCase User-Agent .*NG.* bad_bot
+SetEnvIfNoCase User-Agent .*NICErsPRO.* bad_bot
+SetEnvIfNoCase User-Agent .*niki-bot.* bad_bot
+SetEnvIfNoCase User-Agent .*NimbleCrawler.* bad_bot
+SetEnvIfNoCase User-Agent .*Ninja.* bad_bot
+SetEnvIfNoCase User-Agent .*NPbot.* bad_bot
+SetEnvIfNoCase User-Agent .*Octopus.* bad_bot
+SetEnvIfNoCase User-Agent .*Openfind.* bad_bot
+SetEnvIfNoCase User-Agent .*OutfoxBot.* bad_bot
+SetEnvIfNoCase User-Agent ".*Papa\ Foto.*" bad_bot
+SetEnvIfNoCase User-Agent .*pavuk.* bad_bot
+SetEnvIfNoCase User-Agent .*pcBrowser.* bad_bot
+SetEnvIfNoCase User-Agent ".*PHP\ version\ tracker.*" bad_bot
+SetEnvIfNoCase User-Agent .*Pockey.* bad_bot
+SetEnvIfNoCase User-Agent ".*ProPowerBot\/2.14.*" bad_bot
+SetEnvIfNoCase User-Agent .*ProWebWalker.* bad_bot
+SetEnvIfNoCase User-Agent .*psbot.* bad_bot
+SetEnvIfNoCase User-Agent .*Pump.* bad_bot
+SetEnvIfNoCase User-Agent .*QueryN.Metasearch.* bad_bot
 
 # blocking direct queries via PHP or automated scripts using PHP
 SetEnvIfNoCase User-Agent .*PHP\/5.* bad_bot

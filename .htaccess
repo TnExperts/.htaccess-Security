@@ -52,6 +52,17 @@ RewriteRule ^(.*)$ - [F]
 	RewriteRule .* - [F,L]
 </IfModule>
 
+# block referer abusers
+RewriteCond %{HTTP_REFERER} free-social-buttions\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} best-seo-offer\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} buttons-for-your-website\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} www1.free-social-buttons\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} www2.free-social-buttons\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} www3.free-social-buttons\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} 100dollars-seo.com\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} www4.free-social-buttons\.com
+RewriteRule ^.* - [F,L]
+
 # Block bad bots & scrapers using their user-agents
 #
 # blocking content harvesters and site copiers 
@@ -384,3 +395,66 @@ deny from 94.102.48.0/20
 deny from 188.72.106.0/24
 deny from 188.72.117.0/24
 deny from 185.56.80.125
+
+# Aboundex 
+Deny from 173.192.34.95
+
+# Bluecoat
+deny from 8.21.4.254
+deny from 65.46.48.192/30
+deny from 65.160.238.176/28
+deny from 85.92.222.0/24
+deny from 206.51.36.0/22
+deny from 216.52.23.0/24
+
+# Cyberpatrol
+deny from 38.103.17.160/27
+
+# Internet Identity - Anti-Phishing
+deny from 66.113.96.0/20
+deny from 70.35.113.192/27
+
+# Ironport
+deny from 204.15.80.0/22
+
+# Lightspeed Systems Security
+deny from 66.17.15.128/26
+deny from 69.84.207.32/27
+deny from 69.84.207.128/25
+
+# Layered Technologies
+deny from 72.36.128.0/17
+deny from 72.232.0.0/16
+deny from 72.233.0.0/17
+deny from 216.32.0.0/14
+
+# M86
+deny from 67.192.231.224/29
+deny from 208.90.236.0/22
+
+# Phish-Inspector.com
+deny from 209.147.127.208/28
+
+# Prescient Software, Inc. Phishmongers
+deny from 198.186.190.0/23
+deny from 198.186.192.0/23
+deny from 198.186.194.0/24
+
+# urlfilterdb
+deny from 207.210.99.32/29
+
+# websense-in.car1.sandiego1.level3.net
+deny from 4.53.120.22
+
+# Websense
+deny from 66.194.6.0/24
+deny from 67.117.201.128/28
+deny from 69.67.32.0/20
+deny from 131.191.87.0/24
+deny from 204.15.64.0/21
+deny from 208.80.192.0/21
+deny from 212.62.26.64/27
+deny from 213.168.226.0/24
+deny from 213.168.241.0/30
+deny from 213.168.242.0/30
+deny from 213.236.150.16/28

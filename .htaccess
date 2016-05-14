@@ -42,6 +42,16 @@ RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
 RewriteCond %{HTTP:HTTP_CLIENT_IP}      !^$
 RewriteRule ^(.*)$ - [F]
 
+# block malicious scans
+<IfModule mod_rewrite.c>
+	RewriteCond %{REQUEST_URI}  (mssqlil|register).php [NC,OR]
+	RewriteCond %{REQUEST_URI}  (img|thumb|thumb_editor|thumbopen).php [NC,OR]
+	RewriteCond %{QUERY_STRING} (img|thumb|thumb_editor|thumbopen).php [NC,OR]
+	RewriteCond %{REQUEST_URI}  revslider [NC,OR]
+	RewriteCond %{QUERY_STRING} revslider [NC]
+	RewriteRule .* - [F,L]
+</IfModule>
+
 # Block bad bots & scrapers using their user-agents
 #
 # blocking content harvesters and site copiers 

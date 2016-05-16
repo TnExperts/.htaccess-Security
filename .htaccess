@@ -307,6 +307,8 @@ SetEnvIfNoCase User-Agent .*spider.* bad_bot
 SetEnvIfNoCase User-Agent .*Parser.* bad_bot
 SetEnvIfNoCase User-Agent .*ahref.* bad_bot
 SetEnvIfNoCase User-Agent .*zoom.* bad_bot
+SetEnvIfNoCase User-Agent .*Powermarks.* bad_bot
+SetEnvIfNoCase User-Agent .*SafeDNS.* bad_bot
 
 # blocking direct queries via PHP or automated scripts using PHP
 SetEnvIfNoCase User-Agent .*PHP\/5.* bad_bot

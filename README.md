@@ -13,3 +13,6 @@ http://www.useragentstring.com/pages/useragentstring.php
 https://perishablepress.com/how-to-block-proxy-servers-via-htaccess/
 
 http://pastebin.com/5Hw9KZnW
+
+http://www.user-agents.org/index.shtml
+

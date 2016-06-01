@@ -311,6 +311,10 @@ SetEnvIfNoCase User-Agent .*Powermarks.* bad_bot
 SetEnvIfNoCase User-Agent .*SafeDNS.* bad_bot
 SetEnvIfNoCase User-Agent .*BLEXBot.* bad_bot
 SetEnvIfNoCase User-Agent .*aria2.* bad_bot
+SetEnvIfNoCase User-Agent .*wikido.* bad_bot
+SetEnvIfNoCase User-Agent .*Qwantify.* bad_bot
+SetEnvIfNoCase User-Agent .*DotBot.* bad_bot
+SetEnvIfNoCase User-Agent .*FatBot.* bad_bot
 
 # blocking direct queries via PHP or automated scripts using PHP
 SetEnvIfNoCase User-Agent .*PHP\/5.* bad_bot

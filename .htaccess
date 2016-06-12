@@ -315,6 +315,8 @@ SetEnvIfNoCase User-Agent .*wikido.* bad_bot
 SetEnvIfNoCase User-Agent .*Qwantify.* bad_bot
 SetEnvIfNoCase User-Agent .*DotBot.* bad_bot
 SetEnvIfNoCase User-Agent .*FatBot.* bad_bot
+SetEnvIfNoCase User-Agent .*grapeshot.* bad_bot
+SetEnvIfNoCase User-Agent .*Nutch.* bad_bot
 
 # blocking direct queries via PHP or automated scripts using PHP
 SetEnvIfNoCase User-Agent .*PHP\/5.* bad_bot

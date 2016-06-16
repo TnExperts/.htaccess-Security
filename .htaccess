@@ -127,6 +127,7 @@ SetEnvIfNoCase User-Agent .*RepoMonkey.* bad_bot
 SetEnvIfNoCase User-Agent .*RMA.* bad_bot
 SetEnvIfNoCase User-Agent .*Siphon.* bad_bot
 SetEnvIfNoCase User-Agent .*SiteSnagger.* bad_bot
+SetEnvIfNoCase User-Agent .*AppsViewer.* bad_bot # Google Apps used to steal!
 
 # blocking vulnerability scanners
 SetEnvIfNoCase User-Agent .*Acunetix.* bad_bot

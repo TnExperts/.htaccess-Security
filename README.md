@@ -2,6 +2,8 @@
 
 .htaccess file in order to mitigate attacks on webservers running Apache
 
+by <a href="http://malin.cenusa.me">Malin Cenusa</a>
+
 # resources used:
 
 https://perishablepress.com/list-all-user-agents-top-search-engines/

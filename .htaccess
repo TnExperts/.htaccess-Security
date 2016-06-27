@@ -25,7 +25,7 @@ RewriteRule .* - [F]
 RewriteCond %{HTTP_USER_AGENT} ^$
 RewriteRule ^(.*)$ - [F,L]
 
-# block POST without valid referer (mitigates spambots)
+# block POST without valid referer (mitigates spambots) / this will cause issues with plugins that call home such as Jetpack or with some internal callbacks like those made by the "Limit Login Attempts" so it should be used with care on WP sites
 RewriteCond %{REQUEST_METHOD} POST
 RewriteCond %{HTTP_REFERER} !(.*)example\.com(.*) [OR]
 RewriteCond %{HTTP_USER_AGENT} ^-?$

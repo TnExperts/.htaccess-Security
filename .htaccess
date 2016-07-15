@@ -324,6 +324,7 @@ SetEnvIfNoCase User-Agent ".*Google\-HTTP\-Java\-Client.*" bad_bot
 SetEnvIfNoCase User-Agent .*MetaCommentBot.* bad_bot
 SetEnvIfNoCase User-Agent .*Veoozbot.* bad_bot
 SetEnvIfNoCase User-Agent .*ScoutJet.* bad_bot
+SetEnvIfNoCase User-Agent .*DomainAppender.* bad_bot
 
 # blocking direct queries via PHP or automated scripts using PHP
 SetEnvIfNoCase User-Agent .*PHP\/5.* bad_bot

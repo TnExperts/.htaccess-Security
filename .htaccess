@@ -246,7 +246,6 @@ SetEnvIfNoCase User-Agent .*NetAnts.* bad_bot
 SetEnvIfNoCase User-Agent .*Netcraft.* bad_bot
 SetEnvIfNoCase User-Agent .*NetMechanic.* bad_bot
 SetEnvIfNoCase User-Agent .*NextGenSearchBot.* bad_bot
-SetEnvIfNoCase User-Agent .*NG.* bad_bot
 SetEnvIfNoCase User-Agent .*NICErsPRO.* bad_bot
 SetEnvIfNoCase User-Agent .*niki-bot.* bad_bot
 SetEnvIfNoCase User-Agent .*NimbleCrawler.* bad_bot

@@ -37,7 +37,7 @@ $VIP = getrealip();
     <body>
         <center> <h1> <bold>Nothing Personal.</bold> </h1> </center>
         <center> <h2> <bold>But you can't get what u'r searching.</bold> </h2> </center>
-        <center> <h3> <bold>Your IP  (<?php echo $VIP; ?>), Is Savet On Log File. If we read it more than 3'times, you will be banned from this site! </bold> </h3> </center>
+        <center> <h3> <bold>Your IP  (<?php echo $VIP; ?>), Is Saved On Log File. If we read it more than 3'times, you will be banned from this site! </bold> </h3> </center>
     </body>
 </html>
         

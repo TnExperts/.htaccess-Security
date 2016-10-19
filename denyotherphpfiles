@@ -1,0 +1,28 @@
+DirectoryIndex index.php
+Options +FollowSymlinks -Indexes
+
+<IfModule mod_rewrite.c>
+    # Enable mod_rewrite;
+    RewriteEngine On
+
+    # Detect if SSL Module is enabled;
+    <IfModule mod_ssl.c>
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,NC,L]
+    </IfModule>
+
+    # Check if the directory exists;
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{HTTP_REFERER} !^((((https|http)://([w]{3}\.)?)([a-z0-9\.]+)/).*)$ [NC]
+    RewriteRule ^(.*?)(js|image|css|includes|php|files)(.*)$ index.php [L]
+
+    # Check if the file exists;
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{HTTP_REFERER} !^((((https|http)://([w]{3}\.)?)([a-z0-9\.]+)/).*)$ [NC]
+    RewriteRule ^(.*?)(js|image|css|includes|php|files)(.*)$ index.php [L]
+
+    # Redirect to 'index.php', regardless of the request;
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*?)$ index.php [QSA,L]
+</IfModule>

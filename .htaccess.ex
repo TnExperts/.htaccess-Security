@@ -1,5 +1,6 @@
 # Defining custom error document so that all restrictions are routed to a HTML page which minimizes the resource impact:
-ErrorDocument 403 bad-bots.html
+ErrorDocument 403 /bots.html
+ErrorDocument 404 /bots.html
 
 # Disable directory indexing:
 Options -Indexes 

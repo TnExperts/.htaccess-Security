@@ -40,6 +40,17 @@ RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
 RewriteCond %{HTTP:HTTP_CLIENT_IP}      !^$
 RewriteRule ^(.*)$ - [F]
 
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
 # block malicious scans
 <IfModule mod_rewrite.c>
 	RewriteCond %{REQUEST_URI}  (mssqlil|register).php [NC,OR]

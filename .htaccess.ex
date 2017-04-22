@@ -17,16 +17,13 @@ RewriteRule ^(.*)$ index_error.php [F,L]
 RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
 RewriteRule .* - [F]
 
-# block any Googlebot user-agent that does not come from Googlebot subnet:
-RewriteCond %{HTTP_USER_AGENT} .*Googlebot.*
-RewriteCond %{REMOTE_ADDR} !66\.249\.
-RewriteRule .* - [F] 
 
 # block all queries from empty user-agents:
 RewriteCond %{HTTP_USER_AGENT} ^$
 RewriteRule ^(.*)$ - [F,L]
 
 # block POST without valid referer (mitigates spambots) / this will cause issues with plugins that call home such as Jetpack or with some internal callbacks like those made by the "Limit Login Attempts" so it should be used with care on WP sites
+#CHANGE EXAMPLE.COM WITH YOUR DOMAIN NAME
 RewriteCond %{REQUEST_METHOD} POST
 RewriteCond %{HTTP_REFERER} !(.*)example\.com(.*) [OR]
 RewriteCond %{HTTP_USER_AGENT} ^-?$
